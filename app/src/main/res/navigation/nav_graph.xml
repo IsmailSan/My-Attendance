@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mapsFragment">
+
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.test.my_attendance.ui.maps.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_geofencesFragment"
+            app:destination="@id/geofencesFragment" />
+        <action
+            android:id="@+id/action_mapsFragment_to_add_geofence_graph"
+            app:destination="@id/add_geofence_graph" />
+        <action
+            android:id="@+id/action_mapsFragment_to_add_geofence_graph2"
+            app:destination="@id/add_geofence_graph" />
+    </fragment>
+    <navigation android:id="@+id/add_geofence_graph" app:startDestination="@id/firstStepFragment">
+        <fragment
+            android:id="@+id/firstStepFragment"
+            android:name="com.test.my_attendance.ui.addgeofence.FirstStepFragment"
+            android:label="fragment_main"
+            tools:layout="@layout/fragment_first_step" >
+            <action
+                android:id="@+id/action_firstStepFragment_to_secondStepFragment"
+                app:destination="@id/secondStepFragment"
+                app:popUpTo="@id/firstStepFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/secondStepFragment"
+            android:name="com.test.my_attendance.ui.addgeofence.SecondStepFragment"
+            android:label="fragment_second_step"
+            tools:layout="@layout/fragment_second_step" >
+            <action
+                android:id="@+id/action_secondStepFragment_to_thirdStepFragment"
+                app:destination="@id/thirdStepFragment"
+                app:popUpTo="@id/secondStepFragment"
+                app:popUpToInclusive="true" />
+            <action
+                android:id="@+id/action_secondStepFragment_to_firstStepFragment"
+                app:destination="@id/firstStepFragment"
+                app:popUpTo="@id/secondStepFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/thirdStepFragment"
+            android:name="com.test.my_attendance.ui.addgeofence.ThirdStepFragment"
+            android:label="fragment_third_step"
+            tools:layout="@layout/fragment_third_step" >
+            <action
+                android:id="@+id/action_thirdStepFragment_to_secondStepFragment"
+                app:destination="@id/secondStepFragment"
+                app:popUpTo="@id/thirdStepFragment"
+                app:popUpToInclusive="true" />
+        </fragment>
+    </navigation>
+    <fragment
+        android:id="@+id/geofencesFragment"
+        android:name="com.test.my_attendance.ui.geofences.GeofencesFragment"
+        android:label="fragment_geofences"
+        tools:layout="@layout/fragment_geofences" >
+        <action
+            android:id="@+id/action_geofencesFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/geofencesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/permissionFragment"
+        android:name="com.test.my_attendance.ui.permission.PermissionFragment"
+        android:label="fragment_permission"
+        tools:layout="@layout/fragment_permission" >
+        <action
+            android:id="@+id/action_permissionFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_permissionFragment_to_add_geofence_graph"
+            app:destination="@id/add_geofence_graph"
+            app:popUpTo="@id/permissionFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+</navigation>
