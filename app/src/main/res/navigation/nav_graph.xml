@@ -3,7 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mapsFragment">
+    app:startDestination="@id/permissionFragment">
+
+    <fragment
+        android:id="@+id/permissionFragment"
+        android:name="com.test.my_attendance.ui.permission.PermissionFragment"
+        android:label="fragment_permission"
+        tools:layout="@layout/fragment_permission" >
+        <action
+            android:id="@+id/action_permissionFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment"
+            app:popUpTo="@id/permissionFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_permissionFragment_to_add_geofence_graph"
+            app:destination="@id/add_geofence_graph"
+            app:popUpTo="@id/permissionFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/mapsFragment"
@@ -16,11 +33,15 @@
         <action
             android:id="@+id/action_mapsFragment_to_add_geofence_graph"
             app:destination="@id/add_geofence_graph" />
-        <action
-            android:id="@+id/action_mapsFragment_to_add_geofence_graph2"
-            app:destination="@id/add_geofence_graph" />
+        <argument
+            android:name="geofenceEntity"
+            app:argType="com.test.my_attendance.data.GeofenceEntity"
+            app:nullable="true"
+            android:defaultValue="@null"
+            />
     </fragment>
-    <navigation android:id="@+id/add_geofence_graph" app:startDestination="@id/firstStepFragment">
+    <navigation android:id="@+id/add_geofence_graph"
+        app:startDestination="@id/firstStepFragment">
         <fragment
             android:id="@+id/firstStepFragment"
             android:name="com.test.my_attendance.ui.addgeofence.FirstStepFragment"
@@ -69,20 +90,20 @@
             android:id="@+id/action_geofencesFragment_to_mapsFragment"
             app:destination="@id/mapsFragment"
             app:launchSingleTop="true"
-            app:popUpTo="@id/geofencesFragment" />
+            app:popUpTo="@id/geofencesFragment"
+            app:popUpToInclusive="true"
+            />
     </fragment>
-    <fragment
-        android:id="@+id/permissionFragment"
-        android:name="com.test.my_attendance.ui.permission.PermissionFragment"
-        android:label="fragment_permission"
-        tools:layout="@layout/fragment_permission" >
-        <action
-            android:id="@+id/action_permissionFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
-        <action
-            android:id="@+id/action_permissionFragment_to_add_geofence_graph"
-            app:destination="@id/add_geofence_graph"
-            app:popUpTo="@id/permissionFragment"
-            app:popUpToInclusive="true" />
-    </fragment>
+    <action
+        android:id="@+id/action_firstStepFragment_to_mapsFragment"
+        app:destination="@id/mapsFragment"
+        app:popUpTo="@id/firstStepFragment"
+        app:popUpToInclusive="true"
+        app:launchSingleTop="true" />
+    <action
+        android:id="@+id/action_thirdStepFragment_to_mapsFragment"
+        app:destination="@id/mapsFragment"
+        app:popUpTo="@id/thirdStepFragment"
+        app:popUpToInclusive="true"
+        app:launchSingleTop="true" />
 </navigation>
